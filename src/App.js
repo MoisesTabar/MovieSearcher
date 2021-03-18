@@ -1,14 +1,12 @@
 import './styles/App.css';
 import 'bulma/css/bulma.css';
-import Search from './components/Search';
+import Movies from './components/Movies';
 
 function App() {
   return (
     <div className="App">
       <h1 className="title is-1">Online Movie Searcher</h1>
-      <div className="Search-wrapper">
-        <Search />
-      </div>
+      <Movies />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axiosClient from '../config/axios.config';
 
-function Search(){
+function Search(props){
 
     const [input, SetInput] = useState('');
 
@@ -11,7 +11,12 @@ function Search(){
         const request = await axiosClient.get(input);
         const response = await request.data;
 
-        console.log(response);
+        const { Search, TotalResults } = response;
+        const { onResults } = props;
+
+        console.log({Search, TotalResults});
+
+        onResults(Search);
     }
 
     return (
