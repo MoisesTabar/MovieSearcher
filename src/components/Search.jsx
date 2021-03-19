@@ -4,7 +4,7 @@ import axiosClient from '../config/axios.config';
 function Search(props){
 
     //setting the initial input state
-    const [input, SetInput, ] = useState('');
+    const [input, SetInput] = useState('');
 
     /**
     * handles the submit action in the form, consumes the api and returns response as props
@@ -16,7 +16,7 @@ function Search(props){
         const request = await axiosClient.get(input);
         const response = await request.data;
 
-        const { Search } = response;
+        const { Search = [] } = response;
         const { onResults } = props;
 
         onResults(Search);

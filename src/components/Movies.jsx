@@ -4,12 +4,14 @@ import Card from './Card';
 
 function Movies(){
     const [ results, SetResults ] = useState([]);
+    const [ noResults, SetNoResults ] = useState(false);
     
     /**
     * sets the state of the result state
     * @param {*} results takes the result prop from the Search component
     */
     const getResults = (results) => {
+        SetNoResults({noResults: true});
         SetResults(results);
     }
     
@@ -33,13 +35,17 @@ function Movies(){
         );
     }
 
+    const renderInfo = () => {
+        return results.length === 0 ? <p>No results</p> : renderResults()
+    }
+
     return(
         <Fragment>
             <div className="Search-wrapper">
                 <Search onResults={getResults}/>
             </div>
             <div>
-                { results.length === 0 ? <p>No results</p> : renderResults() }
+                { noResults ? renderInfo() : <p>Search your favorite movie</p>}
             </div>
         </Fragment>
     );
