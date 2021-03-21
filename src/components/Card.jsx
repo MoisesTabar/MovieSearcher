@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types'
 
 function Card(props){
-    const { poster, title, year } = props
+    const { id, poster, title, year } = props
     return(
-        <div className="card">
+        <a href={`?id=${id}`}className="card">
             <div className="card-image">
                 <figure className="image">
                     <img src={poster} alt="Movie poster"/>
@@ -18,11 +18,12 @@ function Card(props){
                 <p className="title is-4">{title}</p>
                 <p className="subtitle is-6">{year}</p>
             </div>
-        </div>
+        </a>
     );
 }
 
 Card.propTypes = {
+    id: PropTypes.string,
     poster: PropTypes.string,
     title: PropTypes.string,
     year: PropTypes.string
