@@ -9,14 +9,15 @@ function Movies(){
 
     //verify the existant url to redirect to the detail page
     const url = new URL(document.location);
-    const hasId = url.searchParams.has('id')
+    const hasId = url.searchParams.has('id');
+    const movieId = url.searchParams.get('id');
     
     /**
     * sets the state of the result state
     * @param {*} results takes the result prop from the Search component
     */
     const getResults = (results) => {
-        SetNoResults({noResults: true});
+        SetNoResults({ noResults: true });
         SetResults(results);
     }
     
@@ -47,7 +48,7 @@ function Movies(){
     //if the id of the poster is available return the description page
     if(hasId){
         return(
-            <Description id={url.searchParams.get('id')}/>
+            <Description id={movieId}/>
         );
     }
 
