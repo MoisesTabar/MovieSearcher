@@ -1,17 +1,11 @@
 import React, { Fragment, useState } from 'react';
 import Search from './Search';
 import Card from './Card';
-import Description from '../pages/Description';
 
 function Movies(){
     const [ results, SetResults ] = useState([]);
     const [ noResults, SetNoResults ] = useState(false);
 
-    //verify the existant url to redirect to the detail page
-    const url = new URL(document.location);
-    const hasId = url.searchParams.has('id');
-    const movieId = url.searchParams.get('id');
-    
     /**
     * sets the state of the result state
     * @param {*} results takes the result prop from the Search component
@@ -43,13 +37,6 @@ function Movies(){
 
     const renderInfo = () => {
         return results.length === 0 ? <p>No results</p> : renderResults()
-    }
-
-    //if the id of the poster is available return the description page
-    if(hasId){
-        return(
-            <Description id={movieId}/>
-        );
     }
 
     return(

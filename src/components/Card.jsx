@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
 
 function Card(props){
     const { id, poster, title, year } = props
     return(
-        <a href={`?id=${id}`}className="card">
+        <Link to={`/desc/${id}`}className="card">
             <div className="card-image">
                 <figure className="image">
                     <img src={poster} alt="Movie poster"/>
@@ -18,7 +19,7 @@ function Card(props){
                 <p className="title is-4">{title}</p>
                 <p className="subtitle is-6">{year}</p>
             </div>
-        </a>
+        </Link>
     );
 }
 

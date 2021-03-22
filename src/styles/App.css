@@ -19,3 +19,8 @@
   margin-bottom: 24px;
   width: 50%;
 }
+
+.Back-Button{
+  display: flex;
+  justify-content: center;
+}

@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 dotenv.config();
 
 function Description(props){
-    const { id } = props;
+    const { id } = props.match.params;
     const [ desc, SetDesc ] = useState({});
 
     const displayDescription = async({ id }) => {
@@ -24,27 +24,33 @@ function Description(props){
     }
 
     useEffect(() => {
-        displayDescription({ id })
-    });
+        displayDescription({ id });
+        return () => {
+            SetDesc({});
+        }
+    }, []);
 
     const { Title, Metascore, Actors, Poster, Plot } = desc;
 
     return(
         <div>
-            <button onClick={backwardsButton}>Go back</button>
+            <button className="button is-info" onClick={backwardsButton}>Go back</button>
+            <h2> <strong>Title: </strong> { Title }</h2>
             <img src={ Poster } alt={Title}/>
-            <h3>{ Title }</h3>
-            <h3>{ Actors }</h3>
-            <p>{ Plot }</p>
-            <p>{ Metascore }</p>
-
-            <p>Detail page</p>
+            <h3> <strong>Actors: </strong> { Actors }</h3>
+            <p> <strong> Plot:  </strong> { Plot }</p>
+            <p> <strong> Score: </strong> { Metascore }</p>
         </div>
     );
 }
 
 Description.propTypes = {
-    id: PropTypes.string
+    match: PropTypes.shape({
+        params: PropTypes.object,
+        isExact: PropTypes.bool,
+        path: PropTypes.string,
+        url: PropTypes.string
+    })
 }
 
 export default Description;
